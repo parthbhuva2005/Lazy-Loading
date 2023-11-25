@@ -1,1 +1,61 @@
-<p>auth works!</p>
+<div
+  class="d-flex justify-content-center align-items-center bg-dark-subtle vh-100">
+  <div class="text-center bg-light rounded-3 p-3 w-25">
+    <p class="fs-3 fw-medium">Sign in Page!{{obj}}</p>
+    <form #form="ngForm" class="text-start" (ngSubmit)="submit(form)">
+      <div class="mb-3">
+        <label for class="form-label ps-1 fs-6 fw-medium">Name</label>
+        <input type="text" name="name" class="form-control" ngModel #Name="ngModel" placeholder="Please Enter Name" required minlength="2">
+        <div *ngIf="Name.invalid && Name.touched" class="text-danger">
+          <small *ngIf="Name.errors?.['required']">
+            *Please Enter Your Name
+          </small>
+          <small *ngIf="Name.errors?.['minlength']">
+            *Please Enter Min 2 Char
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for class="form-label ps-1 fs-6 fw-medium">Phone Number</label>
+        <input type="tel" name="phone" class="form-control" ngModel #phone="ngModel" placeholder="Please Enter Phone Number" required pattern="-?[0-9]+(\.[0-9][0-9]?)?" minlength="10" maxlength="10">
+        <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+          <small *ngIf="phone.errors?.['required']">
+            *Please Enter Your Phone Number
+          </small>
+          <small *ngIf="phone.errors?.['pattern']">
+            *Please Enter appropriate Phone Number
+          </small>
+          <small *ngIf="phone.errors?.['minlength']">
+            *Please Enter Min 10 Char Phone Number
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for class="form-label ps-1 fs-6 fw-medium">Email</label>
+        <input type="email" name="Email" class="form-control" ngModel #Email="ngModel" placeholder="Please Enter Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <div *ngIf="Email.invalid && Email.touched" class="text-danger">
+          <small *ngIf="Email.errors?.['required']">
+            *Please Enter Your Email
+          </small>
+          <small *ngIf="Email.errors?.['pattern']">
+            *Please Enter appropriate Email
+          </small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for class="form-label ps-1 fs-6 fw-medium">Password</label>
+        <input type="password" name="password" class="form-control" ngModel #password="ngModel" placeholder="Please Enter Password" required minlength="8" maxlength="10">
+        <div *ngIf="password.invalid && password.touched" class="text-danger">
+          <small *ngIf="password.errors?.['required']">
+            *Please Enter Your Password
+          </small>
+          <small *ngIf="password.errors?.['minlength']">
+            *Please Enter Min 8 Char Password
+          </small>
+        </div>
+      </div>
+      <button [disabled]="!form.valid" class="btn btn-success" type="submit" routerLink="">Submit</button>
+    </form>
+  </div>
+</div>
+`

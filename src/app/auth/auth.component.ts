@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-
+  obj:any
+  submit(form:NgForm){
+    this.obj = form.value.name
+    console.log(form.value);
+    form.reset();
+  }
 }
